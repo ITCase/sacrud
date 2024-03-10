@@ -184,7 +184,7 @@ def columns_by_group(table):
     return [
         ('',
          [
-             (c.key, c._orig_columns[0])
+             (c.key, c.columns[0])
              for c in sorted(
                      sqlalchemy.inspection.inspect(table).column_attrs,
                      key=lambda col: col.columns[0]._creation_order)
@@ -212,6 +212,6 @@ def column_to_attr_name(key, table):
     for c in sorted(
             sqlalchemy.inspection.inspect(table).column_attrs,
             key=lambda col: col.columns[0]._creation_order):
-        if c._orig_columns[0].name == key:
+        if c.columns[0].name == key:
             return c.key
     return key
